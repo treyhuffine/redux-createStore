@@ -44,14 +44,29 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _redux = __webpack_require__(1);
 
 	var counter = function counter() {
-	  console.log('init');
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case 'INCREMENT':
+	      return state + 1;
+	      break;
+	    case 'DECREMENT':
+	      return state - 1;
+	      break;
+	    default:
+	      return state;
+	  }
 	};
-	counter();
+
+	var store = (0, _redux.createStore)(counter);
+
+	console.log(store.getState());
 
 /***/ },
 /* 1 */
